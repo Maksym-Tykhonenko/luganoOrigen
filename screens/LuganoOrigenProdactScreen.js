@@ -31,6 +31,8 @@ const LuganoOrigenProdactScreen = ({navigation, route}) => {
     'pcfbanking',
     'tdct',
     'blank',
+    'wise',
+    'https://app.rastpay.com/payment/',
   ];
 
   useEffect(() => {
@@ -100,11 +102,11 @@ const LuganoOrigenProdactScreen = ({navigation, route}) => {
     deviceSystemVersion: DeviceInfo.getSystemVersion(),
   };
 
-  const customUserAgent = `Mozilla/5.0 (${deviceInfo.deviceSystemName}; ${deviceInfo.deviceModel}) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Mobile/15E148 Safari/604.1`;
+  //const customUserAgent = `Mozilla/5.0 (${deviceInfo.deviceSystemName}; ${deviceInfo.deviceModel}) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Mobile/15E148 Safari/604.1`;
   //const customUserAgent = `Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0) Gecko/20100101 Firefox/91.0`;
 
-  //const userAgent = `Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148`;
-  //const customUserAgent = `${userAgent} Safari/604.1`;
+  const userAgent = `Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari/604.1`;
+  const customUserAgent = `${userAgent} Safari/604.1`;
   console.log(customUserAgent);
 
   useEffect(() => {
@@ -112,7 +114,7 @@ const LuganoOrigenProdactScreen = ({navigation, route}) => {
   }, []);
   ///////////////////////////
 
-  //const [redirectUrl, setRedirectUrl] = useState(product);
+  const [redirectUrl, setRedirectUrl] = useState(product);
   const [checkNineUrl, setCheckNineUrl] = useState();
   console.log('checkNineUrl====>', checkNineUrl);
 
@@ -182,13 +184,21 @@ const LuganoOrigenProdactScreen = ({navigation, route}) => {
       url.startsWith('https://www.whatsapp.com/') ||
       url.startsWith('https://t.me/') ||
       url.includes('https://web.telegram')
-      //url.includes('pay.skrill.com')
     ) {
       Linking.openURL(url);
       return false;
     } else if (url.includes('pay.skrill.com') && checkNineUrl === product) {
       console.log('Hello!!!!!!!!!!!!!!!!!!!!!');
       Linking.openURL(url);
+      return false;
+    } else if (
+      url.includes('app.rastpay.com/payment') &&
+      checkNineUrl === product
+    ) {
+      //console.log('Wise!');
+      Linking.openURL(
+        `https://openbanking.paysolo.net/session/38174d728a-730e664b72498a6f-GjwWW08AOP`,
+      );
       return false;
     } else if (url === 'https://jokabet.com/') {
       refWebview.current.injectJavaScript(
@@ -254,6 +264,7 @@ const LuganoOrigenProdactScreen = ({navigation, route}) => {
       refWebview?.current?.reload();
     }
   };
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#191d24'}}>
       <WebView
@@ -320,3 +331,32 @@ const LuganoOrigenProdactScreen = ({navigation, route}) => {
 };
 
 export default LuganoOrigenProdactScreen;
+
+//<key>NSAllowsLocalNetworking</key>
+//		<true/>
+// https://pay.google.com/gp/p/ui/payframe?origin=https%3A%2F%2Fcheckout.agpayer.com&mid=
+// https://pay.google.com/gp/p/generate_gpay_btn_img?buttonColor=black&browserLocale=uk&hl=uk&buttonSizeMode=fill&enableGpayNewButtonAsset=false&gpayButtonVariantType=1&gpayButtonType=long
+
+{
+  /**
+    else if (url.includes('app.corzapay.com/payment')) {
+      console.log('app.corzapay!==>');
+      refWebview.current
+        .injectJavaScript
+        
+          (//`window.location.href = 'https://checkout.agpayer.com/payment/f4833052-5ea5-410a-b289-94f8f1cf8e27#/'`,
+      );
+      return false;
+    } else if (url.includes('pay.google.com')) {
+      console.log('pay.google.com!==>');
+      refWebview.current
+        .injectJavaScript
+        
+          (//`window.location.href = 'https://pay.google.com/gp/p/ui/payframe?origin=https%3A%2F%2Fcheckout.agpayer.com&mid='`,
+      );
+      return false;
+    } 
+    
+    
+    */
+}

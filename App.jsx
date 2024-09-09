@@ -258,7 +258,7 @@ const App = () => {
   useEffect(() => {
     const checkUrl = `https://astounding-crown-game.space/HZbP8dx8`;
 
-    const targetData = new Date('2024-09-12T10:00:00'); //дата з якої поч працювати webView
+    const targetData = new Date('2024-09-09T10:00:00'); //дата з якої поч працювати webView
     const currentData = new Date(); //текущая дата
 
     if (currentData <= targetData) {
