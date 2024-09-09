@@ -67,7 +67,7 @@ const UserProfile = ({ onClose }) => {
     try {
       await AsyncStorage.setItem('userProfile', name);
       await AsyncStorage.setItem('userAvatar', JSON.stringify(selectedAvatar));
-      console.log('User profile saved successfully!');
+      //console.log('User profile saved successfully!');
       onClose();
     } catch (error) {
       console.error('Error saving user profile:', error);

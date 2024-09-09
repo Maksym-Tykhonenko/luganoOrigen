@@ -88,7 +88,7 @@ const Quiz = ({ topic, difficulty, navigation, vibrationEnabled }) => {
         : parsedData.timeTaken;
   
       await AsyncStorage.setItem(key, JSON.stringify(parsedData));
-      console.log(`${difficulty} mode results saved${topic?.name ? ` for ${topic?.name}` : ''}: score ${parsedData.score}, time taken ${parsedData.timeTaken} seconds`);
+      //console.log(`${difficulty} mode results saved${topic?.name ? ` for ${topic?.name}` : ''}: score ${parsedData.score}, time taken ${parsedData.timeTaken} seconds`);
     } catch (error) {
       console.error('Error saving data to async storage:', error);
     }

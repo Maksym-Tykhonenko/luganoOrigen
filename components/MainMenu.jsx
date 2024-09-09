@@ -21,7 +21,7 @@ const MainMenu = ({ navigation }) => {
   const [isUserProfileVisible, setIsUserProfileVisible] = useState(false);
   const [userName, setUserName] = useState('User');
   const [userAvatar, setUserAvatar] = useState(null);
-  console.log('userAvatar==>', userAvatar)
+  //console.log('userAvatar==>', userAvatar)
   const [vibrationEnabled, setVibrationEnabled] = useState(true);
 
   const loadResults = useCallback(async () => {
@@ -120,8 +120,8 @@ const MainMenu = ({ navigation }) => {
 
   const handleResultsPress = async () => {
     await loadResults();
-    console.log('Easy Mode Results:', easyModeResults);
-    console.log('Hard Mode Results:', hardModeResults);
+    //console.log('Easy Mode Results:', easyModeResults);
+    //console.log('Hard Mode Results:', hardModeResults);
     setIsResultsModalVisible(true);
   };
   
